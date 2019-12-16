@@ -1,20 +1,17 @@
 import React from 'react';
 import Particles from 'react-particles-js';
 
+import Wave from '../components/wave';
+import Card from '../components/card';
+
 import {Link} from 'react-router-dom';
 
 const HomePage = () => {
 
     return (
+        <>
         <div className="Hero">
-            <div style={{
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-                left: '0px',
-                right: '0px',
-                'z-index': '-1'
-                }}>
+            <div className='particles'>
                 <Particles
                     params={{
                         "particles": {
@@ -22,7 +19,7 @@ const HomePage = () => {
                                 "value": 50
                             },
                             "size": {
-                                "value": 6
+                                "value": 3
                             }
                         },
                         "interactivity": {
@@ -48,21 +45,31 @@ const HomePage = () => {
                     <img src={require('../images/logo-firebase.png')} alt="Google Cloud" width="50"/>
                     <img src={require('../images/logo-aws.png')} alt="Serverless AWS" width="50"/>
                 </div>
-                <svg width="100%" height="172" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="white">
-                        <animate repeatCount='indefinite' fill='freeze' attributeName='d' dur='10s' values='M0 25.9086C277 84.5821 433 65.736 720 25.9086C934.818 -3.9019 1214.06 -5.23669 1442 8.06597C2079 45.2421 2208 63.5007 2560 25.9088V171.91L0 171.91V25.9086Z;
-                        
-                        M0 87.1596C316 87.1597 444 160 884 52.0001C1324 -55.9999 1320.29 34.966 1538 71.251C1814 117.251 2156 189.252 2560 87.1597V233.161L0 233.161V87.1596Z;
-
-                        M0 53.6584C158 11.0001 213 0 363 0C513 0 855.555 115.001 1154 115.001C1440 115.001 1626 -38.0004 2560 53.6585V199.66L0 199.66V53.6584Z;
-
-                        M0 25.9086C277 84.5821 433 65.736 720 25.9086C934.818 -3.9019 1214.06 -5.23669 1442 8.06597C2079 45.2421 2208 63.5007 2560 25.9088V171.91L0 171.91V25.9086Z
-                        ' />
-                    </path>
-                </svg>
-
+                <Wave />
             </div>
         </div>
+        <div className="Cards">
+            <h2>¿Qué podemos hacer por ti?</h2>
+            <div className="CardGroup">
+                <Card 
+                title="Aplicaciones Móviles"
+                text="Android - Ios"
+                image={require('../images/wallpaper.jpg')} />
+                <Card 
+                title="Sistemas de Escritorio"
+                text="Punto de Venta, sistemas de inventarios, o lo que necesites!"
+                image={require('../images/wallpaper2.jpg')} />
+                <Card 
+                title="Desarrollo Web"
+                text="Creación de Páginas Web corporativas o Landing Page"
+                image={require('../images/wallpaper3.jpg')} />
+                <Card 
+                title="Cloud Services"
+                text="desarrollamos y gestionamos infraestructuras centradas en la nube"
+                image={require('../images/wallpaper4.jpg')} />
+            </div>
+        </div>
+        </>
     )
 }
 export default HomePage;
