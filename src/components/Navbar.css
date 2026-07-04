@@ -1,54 +1,97 @@
-.Header{
-    position:fixed;
-    width:100%;
-    padding:50px 0;
+.Header {
+    position: fixed;
+    width: 100%;
+    padding: 24px 0;
     z-index: 100;
-    transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: padding 180ms ease, background 180ms ease, border-color 180ms ease;
 }
+
 .HeaderScrolled {
-    background: rgba(0,0,0, 0.8);
-    padding: 15px 0;
+    padding: 12px 0;
+    background: rgba(6, 19, 31, 0.82);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(20px);
 }
-.HeaderGroup{
-    max-width: 800px;
-    margin:0 auto;
+
+.HeaderGroup {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px;
     display: grid;
-    grid-template-columns:repeat(5, auto);
+    grid-template-columns: auto 1fr auto;
+    gap: 28px;
     align-items: center;
-    justify-items: center;
 }
 
-.Header a{
-    color:white;
-    font-weight: 700;
-
-}
-.Header button{
-    padding:8px 20px;
-    font-size:20px;
-    background: #56CCF2;
-    border:none;
-    font-weight: 700;
-    border-radius: 10px;
-    outline:none;
-    cursor: pointer;
-    transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.Header button:hover{
-    background:white;
-    box-shadow: 0 10px 20px rgba(0,0,0, 0.25);
-    transform:translateY(-3px); 
+.HeaderLogo {
+    display: inline-flex;
+    align-items: center;
 }
 
-@media (max-width:640px){
-    .Header{
-        padding: 15px 0;
+.HeaderLogo img {
+    width: 112px;
+    height: auto;
+}
+
+.Header nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.Header a {
+    color: white;
+    border-radius: 999px;
+}
+
+.Header nav a {
+    padding: 9px 14px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.Header nav a:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.HeaderCta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 10px 18px;
+    color: #04111d !important;
+    background: #49d3ff;
+    box-shadow: 0 14px 32px rgba(73, 211, 255, 0.24);
+}
+
+.HeaderCta:hover {
+    background: white;
+}
+
+@media (max-width: 700px) {
+    .Header {
+        padding: 14px 0;
     }
-    .HeaderGroup{
-        grid-template-columns: repeat(4, auto);
+
+    .HeaderGroup {
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 0 20px;
+        max-width: 100%;
     }
-    .Header a:nth-child(4){
+
+    .Header nav {
+        display: none;
+    }
+
+    .HeaderLogo img {
+        width: 96px;
+    }
+
+    .HeaderCta {
         display: none;
     }
 }

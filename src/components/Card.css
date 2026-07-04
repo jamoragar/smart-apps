@@ -1,41 +1,143 @@
 .Card {
-    width: 300px;
-    height: 225px;
+    --card-accent: #49d3ff;
+    --card-ink: #06131f;
+    --card-glow: rgba(73, 211, 255, 0.22);
+    --card-overlay: linear-gradient(180deg, rgba(6, 19, 31, 0.08), rgba(6, 19, 31, 0.92));
+    width: 100%;
+    max-width: 100%;
+    min-height: 360px;
     position: relative;
     overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0, 0.25);
+    border-radius: 24px;
+    box-shadow: 0 18px 55px rgba(6, 19, 31, 0.16);
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    align-content: end;
+    padding: 22px;
+    isolation: isolate;
+    color: white;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.CardFeatured {
+    box-shadow: 0 24px 70px var(--card-glow);
+}
+
+.CardToneMobile {
+    --card-accent: #49d3ff;
+    --card-glow: rgba(73, 211, 255, 0.28);
+    --card-overlay:
+        radial-gradient(circle at 18% 18%, rgba(73, 211, 255, 0.45), transparent 32%),
+        linear-gradient(180deg, rgba(7, 34, 49, 0.04), rgba(4, 18, 31, 0.94));
+}
+
+.CardToneSoftware {
+    --card-accent: #ffb454;
+    --card-glow: rgba(255, 180, 84, 0.22);
+    --card-overlay:
+        radial-gradient(circle at 18% 18%, rgba(255, 180, 84, 0.42), transparent 34%),
+        linear-gradient(180deg, rgba(42, 27, 8, 0.05), rgba(7, 18, 29, 0.94));
+}
+
+.CardToneWeb {
+    --card-accent: #8cf2c8;
+    --card-glow: rgba(25, 181, 127, 0.22);
+    --card-overlay:
+        radial-gradient(circle at 18% 18%, rgba(140, 242, 200, 0.42), transparent 34%),
+        linear-gradient(180deg, rgba(12, 50, 38, 0.04), rgba(5, 18, 31, 0.94));
+}
+
+.CardToneAi {
+    --card-accent: #b9a7ff;
+    --card-glow: rgba(185, 167, 255, 0.24);
+    --card-overlay:
+        radial-gradient(circle at 18% 18%, rgba(185, 167, 255, 0.46), transparent 34%),
+        linear-gradient(180deg, rgba(39, 31, 79, 0.05), rgba(5, 17, 31, 0.94));
+}
+
+.Card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--card-overlay);
+}
+
+.Card::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 18px;
+    pointer-events: none;
 }
 
 .Card:hover {
-    transform: scale(1.1, 1.1);
-    box-shadow: 0 30px 60px rgba(0,0,0, 0.5);
+    transform: translateY(-6px);
+    box-shadow: 0 30px 80px rgba(6, 19, 31, 0.24);
 }
 
 .Card:hover img {
-    transform: translateY(-20px);
+    transform: scale(1.05);
 }
 
 .Card img {
     position: absolute;
-    top: 0;
-    height: 110%;
-    z-index: -1;
-    transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    transition: transform 420ms ease;
+}
+
+.Card span {
+    width: fit-content;
+    margin-bottom: 12px;
+    padding: 7px 10px;
+    border-radius: 999px;
+    color: var(--card-ink);
+    background: var(--card-accent);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .Card h3 {
+    max-width: 420px;
+    margin: 0;
     color: white;
-    font-size: 30px;
+    font-size: 32px;
+    line-height: 1;
+    overflow-wrap: break-word;
 }
 
 .Card p {
-    color: rgba(255,255,255, 0.8);
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 18px;
-    align-self: end;
+    max-width: 440px;
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.86);
+    font-weight: 700;
+    font-size: 17px;
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 760px) {
+    .Card {
+        min-height: 330px;
+        padding: 18px;
+        overflow: hidden;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .Card h3 {
+        max-width: 260px;
+        font-size: 24px;
+        line-height: 1.05;
+    }
+
+    .Card p {
+        max-width: 270px;
+        font-size: 15px;
+    }
 }

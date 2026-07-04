@@ -1,143 +1,963 @@
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin: 0;
-    font-size:20px;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.3;
-}
-a{
-    color: #5334F5;
-    text-decoration: none;
-    font-weight: 600;
+:root {
+    --ink: #06131f;
+    --ink-soft: #2d4258;
+    --paper: #f6fbff;
+    --paper-tint: #edf7fc;
+    --panel: #ffffff;
+    --aqua: #49d3ff;
+    --aqua-soft: #e6f8ff;
+    --signal: #ffb454;
+    --moss: #1b6b64;
+    --violet: #5257ff;
+    --line: rgba(6, 19, 31, 0.12);
+    --shadow: 0 24px 80px rgba(6, 19, 31, 0.14);
 }
 
-.Hero{
-     background: url('./images/wallpaper3.jpg');
-     height: 920px;
-     background-size: cover;
-     background-position: center;
-     position:relative;
-     z-index: 1;
+* {
+    box-sizing: border-box;
+    min-width: 0;
 }
-.HeroGroup{
-    margin:0 auto;
-    max-width: 500px;
-    padding: 150px 50px;
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+#root {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--signal);
+    outline-offset: 5px;
+}
+
+.Hero {
+    min-height: 920px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 150px 28px 180px;
+    color: white;
+    text-align: center;
+    background:
+        linear-gradient(140deg, rgba(6, 19, 31, 0.95), rgba(8, 27, 43, 0.78)),
+        url('./images/wallpaper3.jpg') center / cover;
+}
+
+.HeroPaths {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.72;
+}
+
+.HeroPaths span {
+    position: absolute;
+    border: 1px solid rgba(73, 211, 255, 0.22);
+    border-radius: 999px;
+    transform: rotate(-18deg);
+}
+
+.HeroPaths span:nth-child(1) {
+    width: 880px;
+    height: 220px;
+    top: 110px;
+    left: -160px;
+}
+
+.HeroPaths span:nth-child(2) {
+    width: 1040px;
+    height: 280px;
+    right: -250px;
+    top: 330px;
+}
+
+.HeroPaths span:nth-child(3) {
+    width: 720px;
+    height: 190px;
+    left: 20%;
+    bottom: 130px;
+}
+
+.HeroGroup {
+    width: min(920px, 100%);
+    margin: 0 auto;
     z-index: 2;
 }
-.Hero h1{
-    margin:0;
-    color:white;
-    font-size:60px;
-    line-height:1.2;
-    opacity: 0;
-    animation-delay: 0.1s;
-    animation: HeroAnimation;
-    animation-duration: 3s;
-    animation-fill-mode: forwards;
-    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-}
 
-.Hero P{
-    color: rgba(255,255,255,0.8);
-    font-size:30px;
-    line-height:1.5;
-    animation: HeroAnimation 3s 0.2s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
-    opacity: 0;
-}
-.Hero a {
-    font-size: 17px;
-    font-weight: 600;
-    color: white;
+.HeroKicker,
+.SectionKicker {
+    margin: 0 0 18px;
+    color: var(--aqua);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    background: rgba(0,0,0, 0.7);
-    padding: 9px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 20px;
-    transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  
-  .Hero a:hover {
-    background: white;
-    color: black;
-  }
-  .Hero .particles{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    z-index: -1;
-  }
-
-@media (max-width:640px){
-    .HeroGroup{
-        padding:100px 20px;
-    }
-    .Hero h1{
-        font-size:40px;
-    }
-    .Hero p{
-        font-size:24px;
-    }
-}
-@keyframes HeroAnimation{
-    0% {
-        opacity: 0;
-        transform:translateY(20px)
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
-.Hero svg{
+.Hero h1 {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: clamp(48px, 6.4vw, 90px);
+    line-height: 0.96;
+    font-weight: 950;
+    letter-spacing: 0;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+}
+
+.HeroLead {
+    max-width: 760px;
+    margin: 28px auto 0;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: clamp(20px, 2vw, 27px);
+    line-height: 1.45;
+}
+
+.HeroActions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 36px;
+}
+
+.HeroCta,
+.HeroSecondary,
+.FinalCta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 13px 24px;
+    border-radius: 999px;
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.HeroCta,
+.FinalCta {
+    background: var(--aqua);
+    color: #04111d;
+    box-shadow: 0 16px 40px rgba(73, 211, 255, 0.28);
+}
+
+.HeroSecondary {
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.HeroCta:hover,
+.HeroSecondary:hover,
+.FinalCta:hover {
+    transform: translateY(-2px);
+}
+
+.HeroShowcase {
+    width: min(980px, 100%);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 0.9fr;
+    gap: 18px;
+    margin: 56px auto 0;
+    text-align: left;
+}
+
+.HeroPanel,
+.OutcomeRail {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(22px);
+}
+
+.HeroPanel {
+    padding: 30px;
+}
+
+.HeroPanel p {
+    margin: 0 0 22px;
+    color: var(--signal);
+    font-weight: 900;
+}
+
+.HeroPanel strong {
+    display: block;
+    max-width: 560px;
+    font-size: clamp(28px, 3vw, 44px);
+    line-height: 1;
+}
+
+.HeroPanel span {
+    display: block;
+    margin-top: 26px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.OutcomeRail {
+    display: grid;
+    gap: 12px;
+    padding: 20px;
+}
+
+.OutcomeRail span {
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+    padding: 0 18px;
+    border-radius: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 900;
+}
+
+.Hero svg {
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
 }
 
-.Hero .Logos{
-    display:grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap:40px;
-    margin:100px 0;
-    justify-items: center;
+.Hero .Logos {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 56px);
+    justify-content: center;
+    gap: 14px;
+    margin: 34px auto 0;
 }
 
-@media (max-width: 640px){
-    .Hero .Logos{
-        grid-template-columns: repeat(3, 1fr);
+.Hero .Logos li {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.Cards,
+.ClientSection,
+.ProofStrip,
+.EngagementSection,
+.WorkflowSection,
+.AboutSection {
+    width: min(1220px, calc(100% - 56px));
+    margin: 0 auto;
+    padding: 108px 0;
+}
+
+.SectionIntro {
+    max-width: 760px;
+    margin-bottom: 44px;
+}
+
+.SectionIntroCentered {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.SectionIntro h2,
+.ProofIntro h2,
+.EngagementIntro h2,
+.WorkflowSection h2,
+.AboutSection h2 {
+    margin: 0;
+    color: var(--ink);
+    font-size: clamp(38px, 4.5vw, 62px);
+    line-height: 1;
+    font-weight: 950;
+}
+
+.SectionIntro p:last-child,
+.EngagementIntro p,
+.WorkflowIntro p,
+.AboutCopy p {
+    max-width: 760px;
+    color: var(--ink-soft);
+    font-size: 21px;
+}
+
+.SectionIntroCentered p:last-child {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.ProofStrip {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(520px, 1.14fr);
+    gap: 34px;
+    align-items: stretch;
+    margin-top: -30px;
+    padding: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 36px;
+    color: white;
+    background:
+        radial-gradient(circle at 16% 20%, rgba(73, 211, 255, 0.24), transparent 28%),
+        radial-gradient(circle at 86% 72%, rgba(255, 180, 84, 0.18), transparent 30%),
+        linear-gradient(135deg, #06131f, #11283d 58%, #071726);
+    box-shadow: 0 28px 90px rgba(6, 19, 31, 0.18);
+    overflow: hidden;
+}
+
+.ProofStrip::after {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 26px;
+    pointer-events: none;
+}
+
+.ProofIntro {
+    align-self: center;
+    max-width: 440px;
+}
+
+.ProofIntro h2 {
+    color: white;
+    font-size: clamp(32px, 3.6vw, 54px);
+}
+
+.ProofGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.ProofItem {
+    min-height: 168px;
+    padding: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+}
+
+.ProofItem h3 {
+    margin: 0;
+    color: white;
+    font-size: 21px;
+    line-height: 1.08;
+}
+
+.ProofItem p {
+    margin: 14px 0 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 16px;
+}
+
+.CardGroup {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.ClientGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.EngagementSection {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(560px, 1.1fr);
+    gap: 42px;
+    align-items: start;
+}
+
+.EngagementIntro {
+    position: sticky;
+    top: 110px;
+}
+
+.EngagementGrid {
+    display: grid;
+    gap: 16px;
+}
+
+.EngagementCard {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 10px 18px;
+    align-items: start;
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.72)),
+        radial-gradient(circle at 100% 0%, rgba(73, 211, 255, 0.18), transparent 30%);
+    box-shadow: 0 18px 56px rgba(6, 19, 31, 0.08);
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.EngagementCard:hover {
+    transform: translateY(-3px);
+    border-color: rgba(73, 211, 255, 0.34);
+    box-shadow: 0 26px 72px rgba(6, 19, 31, 0.13);
+}
+
+.EngagementCard span {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 18px;
+    color: var(--ink);
+    background: var(--aqua);
+    font-weight: 950;
+}
+
+.EngagementCard h3 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 30px;
+    line-height: 1.05;
+}
+
+.EngagementCard p {
+    grid-column: 2;
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 18px;
+}
+
+.EngagementCard ul {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.EngagementCard li {
+    padding: 8px 11px;
+    border-radius: 999px;
+    color: #153047;
+    background: var(--aqua-soft);
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.ClientCard {
+    min-height: 240px;
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: 26px;
+    background: var(--panel);
+    box-shadow: 0 16px 48px rgba(6, 19, 31, 0.08);
+}
+
+.ClientCard h3 {
+    margin: 0;
+    font-size: 25px;
+    line-height: 1.1;
+}
+
+.ClientCard p {
+    margin: 18px 0 0;
+    color: var(--ink-soft);
+    font-size: 18px;
+}
+
+.WorkflowSection {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+    gap: 54px;
+    align-items: start;
+}
+
+.WorkflowIntro {
+    position: sticky;
+    top: 110px;
+}
+
+.WorkflowList {
+    counter-reset: step;
+    display: grid;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.WorkflowItem {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 16px;
+    align-items: start;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--panel);
+    box-shadow: 0 18px 48px rgba(6, 19, 31, 0.08);
+    padding: 18px;
+    transform: translateY(0);
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.WorkflowItemOpen {
+    border-color: rgba(73, 211, 255, 0.42);
+    background: linear-gradient(135deg, #ffffff, #f1fbff);
+    box-shadow: 0 24px 70px rgba(6, 19, 31, 0.13);
+    transform: translateY(-2px);
+}
+
+.WorkflowNumber {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: var(--aqua-soft);
+    color: var(--moss);
+    font-size: 15px;
+    font-weight: 950;
+}
+
+.WorkflowItemOpen .WorkflowNumber {
+    background: var(--ink);
+    color: var(--aqua);
+    transform: scale(1.03);
+}
+
+.WorkflowButton {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0;
+    border: 0;
+    color: var(--ink);
+    background: transparent;
+    font: inherit;
+    font-size: 26px;
+    font-weight: 950;
+    text-align: left;
+    cursor: pointer;
+}
+
+.WorkflowButton span {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    color: var(--ink);
+    background: var(--aqua-soft);
+    transition: transform 180ms ease, background 180ms ease;
+}
+
+.WorkflowItemOpen .WorkflowButton span {
+    background: var(--aqua);
+    transform: rotate(180deg);
+}
+
+.WorkflowPanelWrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: grid-template-rows 220ms ease, opacity 180ms ease, transform 180ms ease;
+}
+
+.WorkflowPanelWrapOpen {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.WorkflowPanel {
+    overflow: hidden;
+}
+
+.WorkflowPanel p,
+.WorkflowPanel small {
+    display: block;
+    margin: 8px 0 0;
+    color: var(--ink-soft);
+    font-size: 18px;
+}
+
+.WorkflowPanel small {
+    color: rgba(45, 66, 88, 0.82);
+    font-weight: 800;
+}
+
+.AboutSection {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+    gap: 44px;
+    align-items: center;
+    padding-bottom: 140px;
+}
+
+.AboutCopy p {
+    margin: 22px 0 0;
+}
+
+.AboutCopy .FinalCta {
+    margin-top: 32px;
+}
+
+.AboutVisual {
+    display: grid;
+    gap: 18px;
+}
+
+.SignalLoop {
+    min-height: 250px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 32px;
+    border: 1px solid rgba(6, 19, 31, 0.12);
+    background:
+        radial-gradient(circle at 20% 18%, rgba(73, 211, 255, 0.32), transparent 28%),
+        radial-gradient(circle at 72% 72%, rgba(255, 180, 84, 0.26), transparent 30%),
+        linear-gradient(135deg, #06131f, #17344d);
+    box-shadow: var(--shadow);
+}
+
+.SignalLoop::before,
+.SignalLoop::after {
+    content: "";
+    position: absolute;
+    inset: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    animation: signal-spin 18s linear infinite;
+}
+
+.SignalLoop::after {
+    inset: 62px 96px;
+    animation-duration: 26s;
+    animation-direction: reverse;
+}
+
+.SignalLoop span {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    min-width: 86px;
+    min-height: 42px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    color: white;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    font-size: 13px;
+    font-weight: 950;
+}
+
+.SignalLoop span:nth-child(1) {
+    top: 30px;
+    left: 42px;
+}
+
+.SignalLoop span:nth-child(2) {
+    top: 74px;
+    right: 38px;
+}
+
+.SignalLoop span:nth-child(3) {
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    background: var(--aqua);
+    color: var(--ink);
+}
+
+.SignalLoop span:nth-child(4) {
+    right: 70px;
+    bottom: 38px;
+}
+
+.SignalLoop span:nth-child(5) {
+    left: 54px;
+    bottom: 46px;
+}
+
+.SignalLoop span:nth-child(6) {
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+}
+
+.ValueGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.ValueCard {
+    min-height: 190px;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--panel);
+    box-shadow: 0 16px 48px rgba(6, 19, 31, 0.08);
+}
+
+.ValueCard h3 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 20px;
+    line-height: 1.1;
+}
+
+.ValueCard p {
+    margin: 14px 0 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+}
+
+@keyframes signal-spin {
+    to {
+        transform: rotate(360deg);
     }
 }
-.Cards h2 {
-    margin: 50px 20px;
-    font-size: 60px;
-    text-align: center;
-    font-weight: 700;
-    background: linear-gradient(104deg, #050A27 0%, #4A548C 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .CardGroup {
-    margin: 50px 40px 100px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 40px;
-    justify-items: center;
-  }
-  
-  @media (max-width: 1060px) {
-    .CardGroup {
-      grid-template-columns: repeat(2, 1fr);
+
+@media (max-width: 980px) {
+    .HeroShowcase,
+    .ProofStrip,
+    .EngagementSection,
+    .WorkflowSection,
+    .ClientGrid,
+    .AboutSection,
+    .ValueGrid {
+        grid-template-columns: 1fr;
     }
-  }
-  
-  @media (max-width: 720px) {
-    .CardGroup {
-      grid-template-columns: repeat(1, 1fr);
+
+    .WorkflowIntro {
+        position: static;
     }
-  }
+
+    .EngagementIntro {
+        position: static;
+    }
+
+    .ProofStrip {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 760px) {
+    body {
+        font-size: 16px;
+    }
+
+    .Hero {
+        min-height: auto;
+        padding: 118px 20px 140px;
+        overflow: hidden;
+    }
+
+    .HeroGroup,
+    .Hero h1,
+    .HeroLead {
+        width: 100%;
+        max-width: 310px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .Hero h1 {
+        font-size: 31px;
+        line-height: 1.04;
+        text-wrap: auto;
+    }
+
+    .HeroLead {
+        font-size: 19px;
+        overflow-wrap: break-word;
+    }
+
+    .HeroKicker,
+    .SectionKicker {
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-wrap: balance;
+    }
+
+    .HeroActions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .HeroCta,
+    .HeroSecondary {
+        width: 100%;
+    }
+
+    .HeroShowcase {
+        width: 100%;
+        max-width: 304px;
+        margin-top: 40px;
+    }
+
+    .HeroPanel {
+        padding: 24px;
+    }
+
+    .Hero .Logos {
+        grid-template-columns: repeat(3, 56px);
+    }
+
+    .HeroPanel strong {
+        font-size: 28px;
+    }
+
+    .Cards,
+    .ClientSection,
+    .ProofStrip,
+    .EngagementSection,
+    .WorkflowSection,
+    .AboutSection {
+        width: calc(100% - 48px);
+        max-width: 330px;
+        padding: 76px 0;
+        overflow: hidden;
+    }
+
+    .SectionIntro,
+    .SectionIntroCentered,
+    .ProofIntro,
+    .EngagementIntro,
+    .WorkflowIntro,
+    .AboutCopy {
+        max-width: 304px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .SectionIntro h2,
+    .ProofIntro h2,
+    .EngagementIntro h2,
+    .WorkflowSection h2,
+    .AboutSection h2 {
+        font-size: 31px;
+        line-height: 1.05;
+        text-wrap: auto;
+        overflow-wrap: break-word;
+    }
+
+    .SectionIntro p:last-child,
+    .EngagementIntro p,
+    .WorkflowIntro p,
+    .AboutCopy p {
+        font-size: 17px;
+    }
+
+    .CardGroup {
+        width: 100%;
+        max-width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    .ClientGrid,
+    .ProofGrid,
+    .WorkflowList {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .WorkflowItem {
+        grid-template-columns: 1fr;
+    }
+
+    .ProofStrip {
+        padding: 24px;
+        border-radius: 28px;
+    }
+
+    .ProofGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .ProofItem {
+        min-height: auto;
+    }
+
+    .EngagementCard {
+        grid-template-columns: 1fr;
+        padding: 22px;
+    }
+
+    .EngagementCard p,
+    .EngagementCard ul {
+        grid-column: 1;
+    }
+
+    .EngagementCard h3 {
+        font-size: 25px;
+    }
+
+    .WorkflowButton {
+        font-size: 23px;
+    }
+
+    .AboutSection {
+        gap: 30px;
+    }
+
+    .SignalLoop {
+        min-height: 230px;
+        border-radius: 26px;
+    }
+
+    .SignalLoop span {
+        min-width: 76px;
+        min-height: 38px;
+        font-size: 12px;
+    }
+
+    .ValueCard {
+        min-height: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
