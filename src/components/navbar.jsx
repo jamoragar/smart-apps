@@ -32,8 +32,9 @@ const NavigationBar = () => {
                     <a href="#servicios">Servicios</a>
                     <a href="#expertise">Expertise</a>
                     <a href="#nosotros">Nosotros</a>
+                    <a href="#contacto">Contacto</a>
                 </nav>
-                <a className="HeaderCta" href="mailto:contacto@smartapps.cl">Contacto</a>
+                <a className="HeaderCta" href="#contacto">Contacto</a>
             </div>
         </header>
     )

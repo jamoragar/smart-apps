@@ -8,6 +8,15 @@ import logoReact from '../images/logo-react.png';
 import logoNode from '../images/logo-node.png';
 import logoFirebase from '../images/logo-firebase.png';
 import logoAws from '../images/logo-aws.png';
+import logoAngular from '../images/logo-angular.svg';
+import logoGoogle from '../images/logo-google-g.svg';
+import logoGo from '../images/logo-go.svg';
+import logoDocker from '../images/logo-docker.svg';
+import logoJenkins from '../images/logo-jenkins.svg';
+import logoOpenAi from '../images/logo-openai.svg';
+import logoGemini from '../images/logo-gemini.svg';
+import logoClawd from '../images/logo-clawd.svg';
+import logoWhatsapp from '../images/logo-whatsapp.svg';
 import wallpaperMobile from '../images/wallpaper.jpg';
 import wallpaperDesktop from '../images/wallpaper2.jpg';
 import wallpaperWeb from '../images/wallpaper3.jpg';
@@ -52,6 +61,14 @@ const technologies = [
     { name: 'Node.js', image: logoNode },
     { name: 'Firebase', image: logoFirebase },
     { name: 'Amazon Web Services', image: logoAws },
+    { name: 'Angular', image: logoAngular, tone: 'angular', monochrome: true },
+    { name: 'Google', image: logoGoogle, tone: 'google' },
+    { name: 'Go', image: logoGo, tone: 'go', monochrome: true },
+    { name: 'Docker', image: logoDocker, tone: 'docker', monochrome: true },
+    { name: 'Jenkins', image: logoJenkins, tone: 'jenkins', monochrome: true },
+    { name: 'OpenAI GPT', image: logoOpenAi, tone: 'openai', monochrome: true },
+    { name: 'Gemini', image: logoGemini, tone: 'gemini', monochrome: true },
+    { name: 'Clawd', image: logoClawd, tone: 'clawd' },
 ];
 
 const clientTypes = [
@@ -156,12 +173,78 @@ const values = [
 ];
 
 const signals = ['Web', 'Mobile', 'Software', 'IA', 'Cloud', 'Datos'];
+const contactEmail = 'contacto@smartapps.cl';
+const developerName = 'jamoragar';
+const developerEmail = contactEmail;
+const whatsappMessage = 'Hola Smart Apps, quiero conversar sobre un proyecto digital.';
+const footerLinks = [
+    { label: 'Servicios', href: '#servicios' },
+    { label: 'Expertise', href: '#expertise' },
+    { label: 'Nosotros', href: '#nosotros' },
+    { label: 'Contacto', href: '#contacto' },
+];
+
+const createContactMailto = ({ name, email, company, service, message }) => {
+    const subject = `Nuevo contacto desde smartapps.cl - ${service}`;
+    const body = [
+        `Nombre: ${name}`,
+        `Email: ${email}`,
+        `Empresa / proyecto: ${company || 'No indicado'}`,
+        `Servicio de interés: ${service}`,
+        '',
+        'Mensaje:',
+        message,
+    ].join('\n');
+
+    return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
 
 const HomePage = () => {
     const [openStep, setOpenStep] = useState('explorar');
+    const currentYear = new Date().getFullYear();
+    const [contactForm, setContactForm] = useState({
+        name: '',
+        email: '',
+        company: '',
+        service: 'Apps web y móviles',
+        message: '',
+    });
+
+    const handleContactChange = (event) => {
+        const { name, value } = event.target;
+        setContactForm((currentForm) => ({
+            ...currentForm,
+            [name]: value,
+        }));
+    };
+
+    const handleContactSubmit = (event) => {
+        event.preventDefault();
+        window.location.href = createContactMailto(contactForm);
+    };
 
     return (
+        <>
         <main id="inicio">
+            <aside className="SocialDock" aria-label="Accesos rápidos de contacto">
+                <a
+                    className="SocialDockButton SocialDockWhatsapp"
+                    href={`https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Contactar por WhatsApp"
+                >
+                    <img src={logoWhatsapp} alt="" aria-hidden="true" />
+                </a>
+                <a
+                    className="SocialDockButton SocialDockEmail"
+                    href="#contacto"
+                    aria-label="Ir al formulario de contacto"
+                >
+                    <span aria-hidden="true">@</span>
+                </a>
+            </aside>
+
             <section className="Hero" aria-labelledby="hero-title">
                 <div className="HeroPaths" aria-hidden="true">
                     <span />
@@ -173,7 +256,7 @@ const HomePage = () => {
                     <h1 id="hero-title">Diseño, software y cloud para negocios que necesitan avanzar.</h1>
                     <p className="HeroLead">Creamos sitios, aplicaciones y sistemas internos que se ven modernos, cargan rápido y explican con claridad por qué un cliente debería elegirte.</p>
                     <div className="HeroActions" aria-label="Acciones principales">
-                        <a className="HeroCta" href="mailto:contacto@smartapps.cl">Conversemos tu proyecto</a>
+                        <a className="HeroCta" href="#contacto">Conversemos tu proyecto</a>
                         <a className="HeroSecondary" href="#servicios">Ver servicios</a>
                     </div>
                 </div>
@@ -193,8 +276,18 @@ const HomePage = () => {
 
                 <ul className="Logos" aria-label="Tecnologías con las que trabajamos">
                     {technologies.map((technology) => (
-                        <li key={technology.name}>
-                            <img src={technology.image} alt={technology.name} width="50" />
+                        <li
+                            className={technology.tone ? `TechItem TechItem${technology.tone.charAt(0).toUpperCase()}${technology.tone.slice(1)}` : 'TechItem'}
+                            key={technology.name}
+                            title={technology.name}
+                        >
+                            <img
+                                className={technology.monochrome ? 'TechLogo TechLogoMono' : 'TechLogo'}
+                                src={technology.image}
+                                alt={technology.name}
+                                title={technology.name}
+                                width="50"
+                            />
                         </li>
                     ))}
                 </ul>
@@ -320,7 +413,7 @@ const HomePage = () => {
                     <h2 id="about-title">Tecnología con oficio, criterio de producto y foco en resultados.</h2>
                     <p>Smart Apps ayuda a empresas a convertir procesos, ideas y oportunidades digitales en aplicaciones útiles. Unimos diseño, desarrollo e infraestructura para que cada entrega sea clara para el usuario, mantenible para el equipo y medible para el negocio.</p>
                     <p>Trabajamos con una mentalidad simple: entender primero, construir con precisión y mejorar con evidencia. Por eso cada proyecto considera experiencia de usuario, accesibilidad, rendimiento, seguridad y una adopción responsable de inteligencia artificial cuando agrega valor real.</p>
-                    <a className="FinalCta" href="mailto:contacto@smartapps.cl">Escríbenos</a>
+                    <a className="FinalCta" href="#contacto">Escríbenos</a>
                 </div>
                 <div className="AboutVisual" aria-label="Capacidades conectadas de Smart Apps">
                     <div className="SignalLoop" aria-hidden="true">
@@ -338,7 +431,125 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
+
+            <section className="ContactSection" id="contacto" aria-labelledby="contact-title">
+                <div className="ContactIntro">
+                    <p className="SectionKicker">Contacto</p>
+                    <h2 id="contact-title">Cuéntanos qué necesitas construir, mejorar o automatizar.</h2>
+                    <p>Completa el formulario y se abrirá un correo con tu información lista para enviar. Mientras más contexto compartas, más concreta será la primera respuesta.</p>
+                    <div className="ContactChannels" aria-label="Canales directos">
+                        <a href={`mailto:${contactEmail}`}>Email directo</a>
+                        <a href={`https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`} target="_blank" rel="noreferrer">WhatsApp</a>
+                    </div>
+                </div>
+
+                <form className="ContactForm" onSubmit={handleContactSubmit}>
+                    <div className="FormRow">
+                        <label htmlFor="contact-name">Nombre</label>
+                        <input
+                            id="contact-name"
+                            name="name"
+                            type="text"
+                            autoComplete="name"
+                            value={contactForm.name}
+                            onChange={handleContactChange}
+                            required
+                        />
+                    </div>
+                    <div className="FormRow">
+                        <label htmlFor="contact-email">Email</label>
+                        <input
+                            id="contact-email"
+                            name="email"
+                            type="email"
+                            autoComplete="email"
+                            value={contactForm.email}
+                            onChange={handleContactChange}
+                            required
+                        />
+                    </div>
+                    <div className="FormRow">
+                        <label htmlFor="contact-company">Empresa o proyecto</label>
+                        <input
+                            id="contact-company"
+                            name="company"
+                            type="text"
+                            autoComplete="organization"
+                            value={contactForm.company}
+                            onChange={handleContactChange}
+                        />
+                    </div>
+                    <div className="FormRow">
+                        <label htmlFor="contact-service">Servicio de interés</label>
+                        <select
+                            id="contact-service"
+                            name="service"
+                            value={contactForm.service}
+                            onChange={handleContactChange}
+                        >
+                            {services.map((service) => (
+                                <option key={service.title} value={service.title}>{service.title}</option>
+                            ))}
+                            <option value="Diagnóstico digital">Diagnóstico digital</option>
+                            <option value="Mejora continua">Mejora continua</option>
+                        </select>
+                    </div>
+                    <div className="FormRow FormRowFull">
+                        <label htmlFor="contact-message">Mensaje</label>
+                        <textarea
+                            id="contact-message"
+                            name="message"
+                            rows="6"
+                            value={contactForm.message}
+                            onChange={handleContactChange}
+                            required
+                        />
+                    </div>
+                    <button className="ContactSubmit" type="submit">Preparar correo</button>
+                </form>
+            </section>
         </main>
+        <footer className="SiteFooter" aria-labelledby="footer-title">
+            <div className="FooterBrand">
+                <p className="SectionKicker">Smart Apps</p>
+                <h2 id="footer-title">Desarrollo de software, aplicaciones e inteligencia artificial para empresas.</h2>
+                <p>Diseñamos y construimos sitios web, aplicaciones móviles, software a medida, automatizaciones con IA e infraestructura cloud para negocios que necesitan avanzar con claridad.</p>
+            </div>
+
+            <nav className="FooterNav" aria-label="Enlaces principales del sitio">
+                <h3>Mapa del sitio</h3>
+                {footerLinks.map((link) => (
+                    <a key={link.href} href={link.href}>{link.label}</a>
+                ))}
+            </nav>
+
+            <nav className="FooterNav" aria-label="Servicios informáticos">
+                <h3>Servicios</h3>
+                {services.map((service) => (
+                    <a key={service.title} href="#servicios">{service.title}</a>
+                ))}
+                <a href="#contacto">Diagnóstico digital</a>
+            </nav>
+
+            <div className="FooterContact">
+                <h3>Contacto</h3>
+                <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+                <a href={`https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`} target="_blank" rel="noreferrer">WhatsApp</a>
+                <span>Punta Arenas, Chile</span>
+            </div>
+
+            <div className="FooterDeveloper">
+                <h3>Desarrollo</h3>
+                <span>Desarrollado por {developerName}</span>
+                <a href={`mailto:${developerEmail}`}>{developerEmail}</a>
+            </div>
+
+            <div className="FooterBottom">
+                <span>© {currentYear} Smart Apps. Todos los derechos reservados.</span>
+                <span>Web rápida, accesible y orientada a conversión.</span>
+            </div>
+        </footer>
+        </>
     );
 };
 

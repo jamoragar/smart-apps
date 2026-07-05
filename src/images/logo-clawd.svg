@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img">
+  <title>Clawd</title>
+  <rect x="10" y="16" width="44" height="30" rx="3" fill="#d97757"/>
+  <rect x="5" y="24" width="11" height="13" rx="2" fill="#d97757"/>
+  <rect x="48" y="24" width="11" height="13" rx="2" fill="#d97757"/>
+  <rect x="16" y="44" width="8" height="13" rx="1.5" fill="#d97757"/>
+  <rect x="28" y="44" width="8" height="13" rx="1.5" fill="#d97757"/>
+  <rect x="40" y="44" width="8" height="13" rx="1.5" fill="#d97757"/>
+  <rect x="19" y="27" width="7" height="7" fill="#06131f"/>
+  <rect x="38" y="27" width="7" height="7" fill="#06131f"/>
+  <path d="M12 16h40v5H12z" fill="#e59372" opacity=".75"/>
+</svg>
